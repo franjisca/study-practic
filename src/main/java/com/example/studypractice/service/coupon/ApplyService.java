@@ -3,6 +3,7 @@ package com.example.studypractice.service.coupon;
 
 import com.example.studypractice.domain.Coupon;
 import com.example.studypractice.domain.User;
+import com.example.studypractice.producer.CouponProducer;
 import com.example.studypractice.repository.coupon.CouponCountRepository;
 import com.example.studypractice.repository.coupon.CouponRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,9 @@ public class ApplyService {
 
     private final CouponCountRepository couponCountRepository;
 
+    private final CouponProducer couponProducer;
+
+
     public void apply(User user) {
 
         // 쿠폰 개수에 관한 정합성 보장
@@ -26,8 +30,9 @@ public class ApplyService {
             throw new IllegalArgumentException("쿠폰이 소진되었습니다.");
         }
 
-        couponRepository.save(Coupon.builder().user(user).build());
+        // couponRepository.save(Coupon.builder().user(user).build());
 
+        couponProducer.createTemplate(user.getId());
 
     }
 
