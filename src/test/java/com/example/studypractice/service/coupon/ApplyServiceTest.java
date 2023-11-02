@@ -33,7 +33,7 @@ class ApplyServiceTest {
 
         User user1 = User.builder().strId("test1").username("test1").build();
         User user2 = User.builder().strId("test2").username("test2").build();
-        
+
         userRepository.save(user1);
         userRepository.save(user2);
 
@@ -49,7 +49,7 @@ class ApplyServiceTest {
     @Test
     public void 동시에요청() throws InterruptedException {
 
-            int threadCount = 1000;
+        int threadCount = 1000;
 
         ExecutorService executorService = Executors.newFixedThreadPool(32);
 
@@ -71,7 +71,9 @@ class ApplyServiceTest {
 
         latch.await();
 
-        long count = couponRepository.count();
+        Thread.sleep(10000);
+
+        long count = couponRepository.;
 
         assertThat(count).isEqualTo(100);
     }
