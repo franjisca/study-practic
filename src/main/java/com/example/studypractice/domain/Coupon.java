@@ -1,4 +1,4 @@
-package com.example.studypractice.domain;
+package com.example.consumer.domain;
 
 
 import jakarta.persistence.Entity;
